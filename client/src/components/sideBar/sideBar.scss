@@ -1,0 +1,326 @@
+@use "../../responsive.scss" as *;
+
+.sidebar-container {
+  background-color: rgba(29, 29, 28, 0.99);
+  padding: 24px;
+  margin: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 20%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+  height: 80vh;
+
+  @include md {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 16px;
+    border-radius: 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  @include sm {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include md {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+
+  @include sm {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+}
+
+.avatar-container {
+  margin-top: 16px;
+  margin-bottom: 24px;
+
+  @include md {
+    margin: 0;
+  }
+
+  @include sm {
+    margin: 0;
+  }
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #2d2d2d;
+}
+
+.admin-info {
+  text-align: center;
+
+  @include md {
+    text-align: left;
+    margin-left: 40px;
+  }
+
+  @include sm {
+    text-align: left;
+    margin-left: 40px;
+  }
+}
+
+.admin-name {
+  font-size: 1.25rem;
+  color: #f1f1f1;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.admin-email {
+  font-size: 0.875rem;
+  color: #c4c4c4;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #2d2d2d;
+  display: none;
+}
+
+.admin-links {
+  width: 100%;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+
+  @include md {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 16px;
+    order: 2;
+  }
+
+  @include sm {
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 16px;
+    order: 2;
+  }
+}
+
+.admin-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f1f1f1;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: #2d2d2d;
+    color: #f59e0b;
+
+    @include md {
+      background-color: transparent;
+    }
+
+    @include sm {
+      background-color: transparent;
+    }
+  }
+}
+
+.admin-link.active {
+  background-color: #2d2d2d;
+  color: #f59e0b;
+
+  @include md {
+    background-color: transparent;
+  }
+
+  @include sm {
+    background-color: transparent;
+  }
+}
+
+.logout-container {
+  width: 100%;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 24px;
+
+  @include sm {
+    margin-top: -30px;
+    justify-content: flex-end;
+  }
+
+  @include md {
+    order: 1;
+    justify-content: flex-end;
+  }
+
+  @include sm {
+    order: 1;
+  }
+}
+
+.logout-btn {
+  width: 100%;
+  padding: 12px 16px;
+  text-align: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff4e4e, #cc0000);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+  cursor: pointer;
+  border: none;
+
+  @include sm {
+    width: 30%;
+    padding: 10px 14px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-top: 0;
+    background: rgba(34, 27, 27, 0.5);
+    box-shadow: none;
+    color: #e42424;
+  }
+
+  &:hover {
+    background: none;
+    color: #fc3737;
+  }
+
+  @include md {
+    width: 30%;
+    padding: 10px 14px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-top: 0;
+    background: rgba(34, 27, 27, 0.5);
+    box-shadow: none;
+    color: #e42424;
+  }
+
+  &:hover {
+    background: none;
+    color: #fc3737;
+  }
+}
+
+.logout-btn .logout-icon {
+  margin-right: 8px;
+}
+
+@include md {
+  .manage-properties,
+  .manage-agents,
+  .update-profile,
+  .manage-recruitment {
+    font-size: 0;
+    display: inline-block;
+  }
+
+  .manage-properties::before {
+    content: "Properties";
+    font-size: 1rem;
+  }
+
+  .manage-agents::before {
+    content: "Agents";
+    font-size: 1rem;
+  }
+
+  .update-profile::before {
+    content: "Profile";
+    font-size: 1rem;
+  }
+
+  .manage-recruitment::before {
+    content: "Recruitment";
+    font-size: 1rem;
+  }
+}
+
+@include sm {
+  .dashboard-link,
+  .manage-properties,
+  .manage-agents,
+  .update-profile,
+  .manage-recruitment {
+    font-size: 0;
+    display: inline-block;
+  }
+
+  .dashboard-link::before,
+  .manage-properties::before,
+  .manage-agents::before,
+  .update-profile::before,
+  .manage-recruitment::before {
+    content: "";
+  }
+}
+
+.admin-link i,
+.admin-link svg {
+  font-size: 1.2rem;
+  margin-right: 0;
+  color: #f1f1f1;
+  transition: color 0.3s ease;
+  display: none;
+}
+
+.admin-link:hover i,
+.admin-link:hover svg,
+.admin-link.active i,
+.admin-link.active svg {
+  color: #f59e0b;
+}
+
+@include md {
+  .admin-link i,
+  .admin-link svg {
+    font-size: 1rem;
+    display: none;
+  }
+}
+
+@include sm {
+  .admin-link i,
+  .admin-link svg {
+    font-size: 1.3rem;
+    display: inline-block;
+    margin: 0;
+  }
+}

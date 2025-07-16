@@ -1,0 +1,30 @@
+@use "../../responsive.scss" as *;
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .noResults {
+  font-size: 1.5rem;
+  color: #999;
+  font-style: italic;
+  padding: 20px 40px;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  background-color: #5a584d;
+  width: fit-content;
+  margin: 0 auto;
+  user-select: none;
+
+  @include xs {
+    font-size: 1.2rem;
+    padding: 15px 25px;
+  }
+
+  @include sm {
+    font-size: 1.3rem;
+    padding: 18px 30px;
+  }
+}
+}

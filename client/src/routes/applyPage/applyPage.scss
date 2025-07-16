@@ -1,0 +1,181 @@
+@use "../../responsive.scss" as *;
+
+.apply-page {
+  width: 100%;
+  height: 86vh;
+  background: linear-gradient(
+    135deg,
+    #171717,
+    #3a3320,
+    #675d32,
+    #66533d,
+    #62572e,
+    #2b271a
+  );
+  color: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  align-items: center;
+
+  .apply-wrapper {
+    width: 50%;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .apply-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 20px;
+
+      span {
+        color: #dbbf61;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+
+    .apply-form {
+      padding: 15px;
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      max-height: 70vh;
+      overflow: hidden;
+
+      label {
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        color: #ddd;
+
+        input,
+        textarea {
+          margin-top: 8px;
+          padding: 10px 14px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+          font-size: 14px;
+          background: rgba(255, 255, 255, 0.10);
+          color: #f5f5f5;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s ease;
+
+          &:focus {
+            border-color: #dbbf61;
+            background: rgba(255, 255, 255, 0.08);
+            outline: none;
+          }
+        }
+
+        textarea {
+          min-height: 100px;
+          resize: vertical;
+        }
+      }
+
+      .row-two {
+        display: flex;
+        gap: 20px;
+
+        > label {
+          flex: 1;
+        }
+
+        @include md {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        @include sm {
+          flex-direction: column;
+          gap: 12px;
+        }
+      }
+
+      .apply-submit-error {
+        color: #ff6b6b;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+
+      .apply-submit-success {
+        color: #6bff81;
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+
+      .apply-submit-btn {
+        margin-top: 20px;
+        background-color: #181407;
+        border: 1px solid #333;
+        padding: 14px 0;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #eee;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #1c1906;
+          color: #fff;
+          box-shadow: 0 4px 12px rgba(219, 191, 97, 0.3);
+        }
+      }
+    }
+  }
+
+  .apply-image {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @include sm {
+    flex-direction: column;
+
+    .apply-wrapper {
+      width: 100%;
+      padding: 20px;
+
+      .apply-form {
+        overflow-y: auto;
+      }
+    }
+
+    .apply-image {
+      display: none;
+    }
+  }
+
+  @include md {
+    .apply-wrapper {
+      width: 100%;
+
+      .apply-form {
+        overflow-y: auto;
+      }
+    }
+
+    .apply-image {
+      display: none;
+    }
+  }
+}

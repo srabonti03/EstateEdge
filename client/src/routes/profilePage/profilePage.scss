@@ -1,0 +1,334 @@
+@use "../../responsive.scss" as *;
+
+.profile-page {
+  display: flex;
+  flex-direction: row;
+  height: 86vh;
+  background-color: #221f18;
+  padding: 20px;
+  overflow: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #d4b356 rgba(0, 0, 0, 0);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #d4b356;
+    }
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: #f1c231;
+  }
+
+  @include md {
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+
+  .profile-details {
+    flex: 3;
+    overflow-y: auto;
+    padding-bottom: 50px;
+    scrollbar-width: thin;
+    scrollbar-color: #d4b356 rgba(0, 0, 0, 0);
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #d4b356;
+      }
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: #f1c231;
+    }
+
+    @include md {
+      flex: none;
+      height: max-content;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    }
+
+    .profile-wrapper {
+      padding-right: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+
+      @include lg {
+        padding-right: 20px;
+      }
+
+      @include md {
+        padding-right: 0;
+        align-items: center;
+        text-align: center;
+      }
+
+      .profile-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @include sm {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        h1 {
+          font-weight: 300;
+          color: #f4f4f4;
+          letter-spacing: 0.5px;
+          white-space: nowrap;
+          font-size: 1.6rem;
+
+          @include xs {
+            font-size: 1.4rem;
+          }
+        }
+
+        .profile-button {
+          padding: 14px 28px;
+          background-color: #998345;
+          color: #dad9d9;
+          cursor: pointer;
+          border: none;
+          border-radius: 6px;
+          font-weight: 600;
+          font-size: 1.05rem;
+          min-width: 130px;
+
+          &:hover {
+            background-color: #c6a752;
+            color: #efeeee;
+          }
+
+          @include sm {
+            font-size: 1rem;
+            padding: 12px 24px;
+            min-width: 120px;
+          }
+
+          @include xs {
+            font-size: 0.95rem;
+            padding: 10px 20px;
+            min-width: 110px;
+          }
+        }
+      }
+
+      .profile-info {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+
+        @include sm {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid #bbb8b5;
+
+          @include sm {
+            width: 90px;
+            height: 90px;
+          }
+
+          @include xs {
+            width: 80px;
+            height: 80px;
+          }
+        }
+
+        .profile-text-info {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+
+          @include sm {
+            align-items: center;
+          }
+
+          b {
+            color: #fbf6ea;
+            font-size: 1.4rem;
+
+            @include sm {
+              font-size: 1.3rem;
+            }
+
+            @include xs {
+              font-size: 1.15rem;
+            }
+          }
+
+          span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #a9a7a7;
+            font-size: 1.1rem;
+
+            @include sm {
+              font-size: 1rem;
+            }
+
+            @include xs {
+              font-size: 0.95rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .user-list {
+    flex-wrap: wrap;
+
+    @include sm {
+      flex-direction: column;
+      margin-right: 30px;
+      padding: 5px;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      scrollbar-width: none;
+      scrollbar-color: transparent transparent;
+
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+      }
+    }
+  }
+
+  .profile-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    .chat-icon {
+      color: #d4b356;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      display: none;
+
+      &:hover {
+        color: #f1c231;
+      }
+
+      @include sm {
+        display: block;
+      }
+    }
+  }
+
+  @include sm {
+    padding: 15px;
+
+    .profile-wrapper {
+      padding-right: 0;
+      gap: 60px;
+    }
+
+    .profile-title {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      .profile-button {
+        font-size: 1rem;
+        padding: 12px 24px;
+        min-width: 120px;
+      }
+    }
+
+    .profile-info {
+      img {
+        width: 90px;
+        height: 90px;
+      }
+
+      .profile-text-info {
+        b {
+          font-size: 1.3rem;
+        }
+
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  @include xs {
+    padding: 10px;
+
+    .profile-title {
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .profile-button {
+        font-size: 0.95rem;
+        padding: 10px 20px;
+        min-width: 110px;
+      }
+    }
+
+    .profile-info {
+      img {
+        width: 80px;
+        height: 80px;
+      }
+
+      .profile-text-info {
+        b {
+          font-size: 1.15rem;
+        }
+
+        span {
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}

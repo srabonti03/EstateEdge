@@ -1,0 +1,327 @@
+@use "../../responsive.scss" as *;
+
+.press-list-page {
+  height: 86vh;
+  width: 100vw;
+  font-family: "Arial", sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  color: #f4e2b3;
+  background: linear-gradient(
+    135deg,
+    #171717,
+    #2a2619,
+    #615935,
+    #302519,
+    #62572e,
+    #28241a
+  );
+  padding: 20px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .press-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .press-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fef7dd; // softer cream, less bright
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  .press-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 245, 221, 0.75);
+    font-weight: 400;
+    max-width: 620px;
+    margin-bottom: 24px;
+    padding: 0 10px;
+    line-height: 1.45;
+  }
+
+  .press-cards {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    width: 100%;
+    max-width: 1350px;
+    padding: 0 14px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .press-card {
+    background: rgba(28, 28, 28, 0.55); // subtle transparent dark glass
+    border: 1px solid rgba(255, 255, 255, 0.08); // delicate border
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 6px; // reduced from 12px
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    padding: 0; // no padding to keep edges flush
+    width: 270px;
+    color: #f4e2b3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    flex-shrink: 0;
+    text-decoration: none;
+    margin: 0; // no margin to avoid gaps
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.3),
+        0 0 12px rgba(255, 255, 255, 0.07);
+    }
+
+    .press-logo {
+      width: 100%; // full width always
+      height: auto;
+      margin: 0; // flush edges, no margin
+      border-radius: 6px 6px 0 0; // rounded corners top only
+      display: block;
+      object-fit: cover;
+      filter: brightness(0.9);
+      transition: filter 0.3s ease;
+
+      /* flush edges */
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+
+      &:hover {
+        filter: brightness(1);
+      }
+    }
+
+    .press-content {
+      padding: 12px 16px; // padding only on text content for readability
+    }
+
+    .press-quote {
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #e9dca7;
+      margin-bottom: 18px;
+      text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+      flex-grow: 1;
+    }
+
+    .press-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #ffb74d;
+      text-align: right;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+      user-select: none;
+    }
+  }
+
+  // Arrow Buttons Styling
+  .arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(40, 36, 26, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    color: #f4e2b3;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+    z-index: 10;
+    margin-top: 40px;
+
+    &:hover {
+      background: rgba(20, 18, 14, 0.7);
+      color: #e4cb8d;
+      box-shadow: 0 0 12px #3f372a, 0 0 20px #25211c;
+    }
+
+    &.left {
+      left: 14px;
+    }
+
+    &.right {
+      right: 14px;
+    }
+
+    svg {
+      pointer-events: none;
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  @include sm {
+    .press-cards {
+      gap: 14px;
+      max-width: 50vw;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-bottom: 12px;
+    }
+
+    .press-card {
+      width: 230px;
+      padding: 0; // no padding, flush logo edges
+      margin: 0;
+
+      .press-logo {
+        width: 100%;
+        margin: 0;
+        border-radius: 6px 6px 0 0;
+        display: block;
+        object-fit: cover;
+
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+
+      .press-content {
+        padding: 10px 14px;
+      }
+
+      .press-quote {
+        font-size: 0.95rem;
+      }
+
+      .press-name {
+        font-size: 1rem;
+      }
+    }
+
+    .arrow-btn {
+      width: 38px;
+      height: 38px;
+      font-size: 1.4rem;
+
+      &.left {
+        left: 10px;
+      }
+
+      &.right {
+        right: 10px;
+      }
+    }
+  }
+
+  @include md {
+    .press-cards {
+      max-width: 800px;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    .press-card {
+      width: 250px;
+      padding: 0;
+      margin: 0;
+
+      .press-logo {
+        width: 100%;
+        margin: 0;
+        border-radius: 6px 6px 0 0;
+        display: block;
+        object-fit: cover;
+
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+
+      .press-content {
+        padding: 12px 16px;
+      }
+
+      .press-quote {
+        font-size: 1rem;
+      }
+
+      .press-name {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  @include xs {
+    .press-cards {
+      gap: 12px;
+      max-width: 100vw;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+    }
+
+    .press-card {
+      width: 200px;
+      padding: 0;
+      margin: 0;
+
+      .press-logo {
+        width: 100%;
+        margin: 0;
+        border-radius: 6px 6px 0 0;
+        display: block;
+        object-fit: cover;
+
+        position: relative;
+        left: 0;
+        right: 0;
+        top: 0;
+      }
+
+      .press-content {
+        padding: 8px 12px;
+      }
+
+      .press-quote {
+        font-size: 0.9rem;
+      }
+
+      .press-name {
+        font-size: 0.9rem;
+      }
+    }
+
+    .arrow-btn {
+      width: 34px;
+      height: 34px;
+      font-size: 1.2rem;
+
+      &.left {
+        left: 8px;
+      }
+
+      &.right {
+        right: 8px;
+      }
+    }
+  }
+}

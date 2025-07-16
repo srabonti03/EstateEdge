@@ -1,0 +1,115 @@
+@use "../../responsive.scss" as *;
+
+$dark-border-color: #444;
+$hover-background: #333;
+$box-background-color: #222;
+
+.data-overview {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  @include lg {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include md {
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.overview-box {
+  border-radius: 12px;
+  border: 1px solid $dark-border-color;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: $box-background-color;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    background-color: $hover-background;
+    border-color: #888;
+    cursor: pointer;
+  }
+
+  @include sm {
+    padding: 15px;
+  }
+}
+
+.info {
+  margin-left: 20px;
+
+  @include sm {
+    margin-left: 10px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+
+    @include sm {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    color: #bbb;
+    margin: 0;
+
+    @include sm {
+      font-size: 12px;
+    }
+  }
+}
+
+.icon-container {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+
+  svg {
+    width: 24px;
+    height: 24px;
+
+    @include sm {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @include sm {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+.icon-container:hover {
+  background-color: transparent;
+  cursor: pointer;
+}

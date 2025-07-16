@@ -1,0 +1,285 @@
+@use "../../responsive.scss" as *;
+
+.contactPage {
+  position: relative;
+  width: 100%;
+  height: 86vh;
+  background-image: url("contact.png");
+  background-size: cover;
+  background-position: bottom;
+  font-family: 'Inter', sans-serif;
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(28, 28, 10, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+  }
+
+  .contact-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding-top: 6%;
+
+    @include sm {
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      gap: 30px;
+    }
+
+    @include md {
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    .contact-left {
+      width: 100%;
+      color: #f5f5dc;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: left;
+      flex-direction: column;
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #fff5dd;
+        font-weight: 600;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        p {
+          margin: 5px 0;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 10px;
+          text-align: left;
+
+          &:hover {
+            color: #fff;
+            transition: all 0.3s ease;
+          }
+        }
+      }
+
+      .socials {
+        padding-top: 40px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin: 20px 0;
+        justify-content: center;
+
+        .icon {
+          font-size: 1.5rem;
+          color: #fff;
+          background: rgba(255, 255, 255, 0.1);
+          padding: 12px;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            background: #fff;
+            color: #3b3b3b;
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      @include sm {
+        padding: 20px;
+        text-align: left;
+        margin-top: 20px;
+
+        h2 {
+          font-size: 1.5rem;
+          line-height: 1.2;
+        }
+
+        .info {
+          justify-content: center;
+          align-items: flex-start;
+        }
+
+        p {
+          font-size: 0.95rem;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+          text-align: left;
+        }
+
+        .socials {
+          padding-top: 20px;
+        }
+
+        .social-icons {
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 10px;
+
+          .icon {
+            font-size: 1.3rem;
+            padding: 10px;
+          }
+        }
+      }
+
+      @include md {
+        padding: 30px;
+        text-align: left;
+        margin-top: 20px;
+
+        h2 {
+          font-size: 1.8rem;
+        }
+
+        .info {
+          justify-content: center;
+          align-items: flex-start;
+        }
+
+        p {
+          font-size: 1rem;
+          text-align: left;
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    .contact-right {
+      width: 80%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+      color: #fff;
+
+      @include sm {
+        width: 90%;
+        padding: 20px;
+      }
+
+      @include md {
+        width: 85%;
+        padding: 25px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #fff5dd;
+        text-align: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        input,
+        textarea {
+          background: rgba(255, 255, 255, 0.1);
+          border: none;
+          padding: 12px;
+          color: #fff;
+          border-radius: 5px;
+          font-size: 1rem;
+          outline: none;
+
+          &::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+          }
+        }
+
+        button {
+          background-color: #7c6f47;
+          color: #fff;
+          border: none;
+          padding: 12px;
+          border-radius: 5px;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: #4d4326;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+
+  @include sm {
+    height: auto;
+    background-size: contain;
+    background-position: center;
+    background-attachment: scroll;
+
+    .contact-container {
+      gap: 20px;
+      padding-top: 20px;
+    }
+
+    .contact-left,
+    .contact-right {
+      width: 100%;
+    }
+
+    .contact-right {
+      padding: 20px;
+    }
+
+    .social-icons {
+      gap: 8px;
+    }
+  }
+
+  @include md {
+    height: auto;
+    background-size: contain;
+    background-position: center;
+    background-attachment: scroll;
+
+    .contact-container {
+      gap: 20px;
+      padding-top: 30px;
+    }
+
+    .contact-left,
+    .contact-right {
+      width: 100%;
+    }
+
+    .contact-right {
+      padding: 25px;
+    }
+
+    .social-icons {
+      gap: 12px;
+    }
+  }
+}

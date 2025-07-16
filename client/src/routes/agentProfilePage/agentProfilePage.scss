@@ -1,0 +1,308 @@
+@use "../../responsive.scss" as *;
+
+.agentProfilePage {
+  display: flex;
+  flex-direction: row;
+  height: 86vh;
+  background-color: #221f18;
+  padding: 20px;
+  overflow: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #d4b356 rgba(0, 0, 0, 0);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #d4b356;
+    }
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background-color: #f1c231;
+  }
+
+  @include lg {
+    flex-direction: row;
+  }
+
+  @include md {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+    padding: 15px;
+  }
+
+  @include sm {
+    flex-direction: column;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  &-details {
+    flex: 3;
+    overflow-y: auto;
+    padding-bottom: 50px;
+    scrollbar-width: thin;
+    scrollbar-color: #d4b356 rgba(0, 0, 0, 0);
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #d4b356;
+      }
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: #f1c231;
+    }
+
+    @include md {
+      flex: 1;
+    }
+
+    .agentProfilePage-wrapper {
+      padding-right: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+
+      @include lg {
+        padding-right: 20px;
+      }
+
+      @include md {
+        padding-right: 0;
+        gap: 40px;
+      }
+
+      @include sm {
+        padding-right: 0;
+        gap: 20px;
+      }
+
+      .agentProfilePage-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        h1 {
+          font-weight: 300;
+          color: #f4f4f4;
+          letter-spacing: 0.5px;
+          font-size: 1.5rem;
+        }
+
+        .agentProfilePage-button {
+          padding: 12px 24px;
+          background-color: #998345;
+          color: #dad9d9;
+          cursor: pointer;
+          border: none;
+          border-radius: 6px;
+          font-weight: 600;
+          transition: all 0.3s ease;
+
+          &:hover {
+            background-color: #c6a752;
+            color: #efeeee;
+          }
+        }
+
+        @include sm {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+
+          h1 {
+            text-align: center;
+            width: 100%;
+          }
+
+          .agentProfilePage-button {
+            width: fit-content;
+            margin: 0 auto;
+          }
+        }
+      }
+
+      .agentProfilePage-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        align-items: flex-start;
+
+        @include sm {
+          text-align: center;
+        }
+
+        @include md {
+          text-align: center;
+        }
+
+        img {
+          width: 80px;
+          height: 120px;
+          border-radius: 5%;
+          object-fit: cover;
+          border: 1px solid #bbb8b5;
+          max-width: 100%;
+          max-height: 100%;
+
+          @include md {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+          }
+        }
+
+        .agentProfilePage-textInfo {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          flex: 1;
+
+          b {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fbf6ea;
+          }
+
+          span {
+            font-size: 16px;
+            color: #ab4a0e;
+          }
+
+          p {
+            font-size: 14px;
+            color: #a9a7a7;
+            margin: 0;
+          }
+
+          .agentProfilePage-bio-toggle {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: none;
+            color: #d4b356;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 0;
+          }
+
+          .agentProfilePage-bio {
+            display: none;
+            font-size: 14px;
+            color: #a9a7a7;
+            margin-top: 8px;
+            line-height: 1.5;
+            max-width: 500px;
+            white-space: normal;
+          }
+
+          .agentProfilePage-bio.show {
+            display: block;
+          }
+        }
+
+        // Center avatar and text on smaller screens
+        @include md {
+          flex-direction: column;
+          align-items: center;
+
+          img {
+            margin-bottom: 10px;
+          }
+        }
+
+        @include sm {
+          flex-direction: column;
+          align-items: center;
+
+          img {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .agentProfilePage-profile-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center; /* Center horizontally */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #d4b356 rgba(0, 0, 0, 0);
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #d4b356;
+      }
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background-color: #f1c231;
+    }
+
+    .agentProfilePage-chat-icon {
+      color: #d4b356;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      display: none;
+    }
+
+    .agentProfilePage-chat-icon:hover {
+      color: #f1c231;
+    }
+
+    @include md {
+      .agentProfilePage-chat-icon {
+        display: block;
+      }
+    }
+
+    @include sm {
+      .agentProfilePage-chat-icon {
+        display: block;
+      }
+    }
+  }
+}

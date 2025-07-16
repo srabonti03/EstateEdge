@@ -1,0 +1,212 @@
+@use "../../responsive.scss" as *;
+
+.manage-property {
+  width: 98%;
+  height: 80vh;
+  padding: 24px;
+  margin-top: 20px;
+  border-radius: 16px;
+  background-color: rgba(20, 20, 20, 0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .heading {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 12px;
+
+    .highlight {
+      color: #facc15;
+    }
+  }
+
+  .sold-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 16px;
+    margin-bottom: 20px;
+
+    .sold-properties-btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+      user-select: none;
+      background-color: #968337;
+      color: #cccccc;
+      box-shadow: 0 0 2px #292827;
+
+      &:hover {
+        background-color: #7a6c24;
+      }
+    }
+  }
+
+  .table-wrapper {
+    flex: 1;
+    max-width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .property-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    color: #e5e5e5;
+    table-layout: auto;
+  }
+
+  th,
+  td {
+    padding: 12px 16px;
+    border: 1px solid #333;
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: #2d2d2d;
+    font-weight: 600;
+    color: #facc15;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #333;
+  }
+
+  .action-btns {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .edit-btn,
+  .archive-btn,
+  .unarchive-btn,
+  .approve-btn {
+    background: none;
+    border: none;
+    color: #facc15;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  @include md {
+    height: 54vh;
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    backdrop-filter: blur(5px);
+
+    .property-table {
+      table-layout: auto;
+      width: 100%;
+    }
+
+    th,
+    td {
+      white-space: normal;
+      padding: 9px 11px;
+      font-size: 15px;
+    }
+
+    th:nth-child(2),
+    th:nth-child(3),
+    th:nth-child(4),
+    td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(4) {
+      display: none;
+    }
+
+    th:nth-child(6),
+    td:nth-child(6) {
+      display: table-cell;
+    }
+
+    .table-wrapper::after {
+      content: "";
+      display: block;
+      height: 10px;
+    }
+  }
+
+  @include sm {
+    height: 54vh;
+    width: 100vw;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    backdrop-filter: blur(3px);
+
+    .property-table {
+      table-layout: auto;
+      width: 100%;
+    }
+
+    th,
+    td {
+      white-space: normal;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    th:nth-child(2),
+    th:nth-child(3),
+    th:nth-child(4),
+    th:nth-child(6),
+    td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(4),
+    td:nth-child(6) {
+      display: none;
+    }
+
+    .table-wrapper::after {
+      content: "";
+      display: block;
+      height: 10px;
+    }
+  }
+
+  @include lg {
+    .role-dropdown {
+      max-width: 220px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+  }
+}

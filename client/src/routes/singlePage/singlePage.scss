@@ -1,0 +1,386 @@
+@use "../../responsive.scss" as *;
+
+.singlePage {
+  display: flex;
+  height: 86vh;
+  padding: 15px;
+  background-color: #1f1c17;
+
+  scrollbar-width: thin;
+  scrollbar-color: #9a7c3b rgba(0, 0, 0, 0);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #8e6c35;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #7a5a2a;
+  }
+
+  @include md {
+    flex-direction: column;
+    overflow: scroll;
+  }
+
+  .details {
+    flex: 3;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #9a7c3b rgba(0, 0, 0, 0);
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #8e6c35;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #7a5a2a;
+    }
+
+    @include md {
+      flex: none;
+      height: max-content;
+      margin-bottom: 50px;
+    }
+
+    .wrapper {
+      padding-right: 50px;
+
+      @include lg {
+        padding-right: 20px;
+      }
+
+      @include md {
+        padding-right: 0px;
+      }
+
+      .info {
+        margin-top: 20px;
+
+        .top {
+          display: flex;
+          justify-content: space-between;
+
+          @include sm {
+            flex-direction: column;
+            gap: 20px;
+          }
+
+          .post {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            h1 {
+              font-weight: 700;
+              color: #dcdcdc;
+              letter-spacing: 0.2px;
+            }
+
+            .address {
+              display: flex;
+              gap: 5px;
+              align-items: center;
+              color: #f0f0f0;
+              font-size: 15px;
+
+              img {
+                width: 16px;
+                height: 16px;
+              }
+            }
+
+            .bottom {
+              color: #bfbfbf;
+              padding-bottom: 10px;
+            }
+
+            .price {
+              padding: 5px 10px;
+              font-size: 22px;
+              font-weight: 600;
+              color: #b0b0b0;
+              border-radius: 5px;
+            }
+          }
+
+          .user {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px 25px;
+            border-radius: 12px;
+            background-color: #373633;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            color: #e9e9e9;
+            font-weight: 500;
+            text-align: center;
+
+            @include sm {
+              padding: 20px 30px;
+              flex-direction: row;
+              justify-content: space-evenly;
+            }
+
+            img {
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              object-fit: cover;
+              border: 1px solid #b0a89f;
+            }
+
+            span {
+              font-size: 16px;
+              font-weight: 600;
+              color: #f4f4f4;
+              margin-bottom: -5px;
+            }
+
+            button {
+              padding: 10px 16px;
+              background: transparent;
+              border: 1px solid #b0a89f;
+              border-radius: 6px;
+              color: #f4f4f4;
+              font-size: 14px;
+              font-weight: 500;
+              transition: all 0.3s ease;
+
+              &:hover {
+                background-color: #b0a89f;
+                color: #1f1c17;
+              }
+            }
+          }
+        }
+
+        .bottom {
+          margin-top: 50px;
+          color: #d1d1d1;
+          font-size: 15px;
+          line-height: 1.6;
+          text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+  }
+
+  .features {
+    flex: 2;
+    background-color: #26261a;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 5px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #9a7c3b rgba(0, 0, 0, 0);
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #8e6c35;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #7a5a2a;
+    }
+
+    @include md {
+      flex: none;
+      height: max-content;
+      margin-bottom: 50px;
+    }
+
+    .wrapper {
+      padding: 0px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      @include md {
+        padding: 20px;
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .title {
+        font-weight: 700;
+        font-size: 20px;
+        margin-bottom: 5px;
+        color: #f0efef;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.5px;
+        padding-top: 10px;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .featureText {
+          color: #e0e0e0;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+          span {
+            font-weight: bold;
+            color: #dcdcdc;
+          }
+
+          p {
+            font-size: 14px;
+            color: #cccccc;
+          }
+        }
+      }
+
+      .listVertical {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 10px;
+        background: rgba(169, 169, 169, 0.4);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        color: #f8f8f8;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 12px rgba(42, 40, 30, 0.1);
+      }
+
+      .listHorizontal {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 10px;
+        background: rgba(169, 169, 169, 0.4);
+        border-radius: 10px;
+        color: #f8f8f8;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+      }
+
+      .sizes {
+        display: flex;
+        justify-content: space-between;
+
+        @include lg {
+          font-size: 12px;
+        }
+
+        .sizes {
+          display: flex;
+          justify-content: space-between;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+
+        .size {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          background: rgba(169, 169, 169, 0.4);
+          padding: 12px 20px;
+          border-radius: 5px;
+          color: #f7f7f7;
+          font-weight: 500;
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+          flex-basis: 30%;
+          font-size: 14px;
+        }
+
+        .size span {
+          font-size: 14px;
+          color: #f7f7f7;
+          font-weight: 500;
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+        }
+
+        .size svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .mapContainer {
+        width: 100%;
+        height: 200px;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+
+        button {
+          padding: 14px 22px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(59, 59, 59, 0.8);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 5px;
+          cursor: pointer;
+          color: #f0f0f0;
+          font-weight: 600;
+          font-size: 14px;
+          margin-bottom: 15px;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+          backdrop-filter: blur(6px);
+          transition: all 0.3s ease-in-out;
+
+          img, svg {
+            width: 18px;
+            height: 18px;
+            filter: brightness(0.99);
+          }
+
+          &:hover {
+            background: rgba(80, 80, 80, 0.9);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+          }
+
+          &:active {
+            transform: scale(0.98);
+            background: rgba(60, 60, 60, 0.9);
+          }
+        }
+      }
+    }
+  }
+}

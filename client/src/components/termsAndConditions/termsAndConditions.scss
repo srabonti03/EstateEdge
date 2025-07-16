@@ -1,0 +1,163 @@
+@use "../../responsive.scss" as *;
+
+.termsWrapper {
+  width: 100%;
+  height: 86vh;
+  background: linear-gradient(
+    135deg,
+    #171717,
+    #3a3320,
+    #675d32,
+    #66533d,
+    #62572e,
+    #2b271a
+  );
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  color: #fff;
+
+  .termsSection {
+    width: 60%;
+    height: 100%;
+    padding: 2rem 3rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      padding-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .termsContent {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+
+      .termItem {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        transition: box-shadow 0.3s ease;
+
+        &:hover {
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .termTitle {
+          font-size: 1.2rem;
+          font-weight: 500;
+          margin-bottom: 0.6rem;
+        }
+
+        .termText {
+          font-size: 1rem;
+          color: #ddd;
+          line-height: 1.6;
+          user-select: text;
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+  }
+
+  .imageSection {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @include md {
+    flex-direction: column;
+
+    .termsSection {
+      width: 100%;
+      padding: 1.5rem 1rem;
+      height: 100%;
+    }
+
+    .imageSection {
+      display: none;
+    }
+
+    .termsContent {
+      gap: 1rem;
+
+      .termItem {
+        padding: 1.2rem 1.5rem;
+
+        .termTitle {
+          font-size: 1.1rem;
+        }
+
+        .termText {
+          font-size: 0.95rem;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 1.7rem;
+      margin-bottom: 1.2rem;
+    }
+  }
+
+  @include sm {
+    padding: 1rem 1rem;
+
+    .termsSection {
+      padding: 1rem;
+    }
+
+    .termsContent {
+      gap: 0.8rem;
+
+      .termItem {
+        padding: 1rem;
+
+        .termTitle {
+          font-size: 1rem;
+        }
+
+        .termText {
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+}

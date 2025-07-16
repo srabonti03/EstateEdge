@@ -1,0 +1,229 @@
+.chat {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 10px;
+
+    h1 {
+      font-weight: 300;
+      color: #f2f2f2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .arrow {
+        color: #ffce6d;
+        font-size: 30px;
+        margin-left: 10px;
+        transition: color 0.3s ease;
+
+        @media (min-width: 1024px) {
+          display: none;
+        }
+
+        &:hover {
+          color: #cb9f47;
+        }
+      }
+    }
+
+    .message {
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      cursor: pointer;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .messageContent {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-left: 10px;
+
+        span {
+          font-weight: bold;
+          color: #f2f2f2;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          transition: color 0.3s ease;
+        }
+
+        p {
+          color: #c0c0c0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          transition: color 0.3s ease;
+        }
+
+        .unread {
+          color: #ffffff;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .chatBox {
+    height: 89%;
+    background-color: #222222;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .top {
+      background-color: #605132;
+      padding: 20px;
+      margin-top: -20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #f2f2f2;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      .user {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .close {
+        cursor: pointer;
+        color: #f2f2f2;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .center {
+      height: 350px;
+      overflow: scroll;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .chatMessage {
+        background-color: #2a2a2a;
+        padding: 10px 15px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        position: relative;
+        transition: background-color 0.3s ease;
+        width: fit-content;
+        max-width: 80%;
+
+        &:hover {
+          background-color: #353535;
+        }
+
+        &.own {
+          align-self: flex-end;
+          background-color: #3a3a3a;
+
+          &:hover {
+            background-color: #4a4a4a;
+          }
+        }
+
+        p {
+          color: #c0c0c0;
+          word-wrap: break-word;
+        }
+
+        .time {
+          font-size: 10px;
+          color: #9f9c9c;
+          align-self: flex-end;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    .bottom {
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #2a2a2a;
+
+      textarea {
+        flex: 3;
+        height: 100%;
+        border: none;
+        padding: 20px;
+        background-color: #3a3a3a;
+        color: #f2f2f2;
+        resize: none;
+        border-bottom-left-radius: 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      button {
+        flex: 1;
+        background-color: #605132;
+        height: 100%;
+        border: none;
+        cursor: pointer;
+        color: #f2f2f2;
+        border-bottom-right-radius: 10px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #7a633a;
+        }
+
+        &:active {
+          background-color: #a08a60;
+        }
+      }
+    }
+  }
+
+  .center::-webkit-scrollbar {
+    display: none;
+  }
+
+  .center {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scroll {
+    overflow: hidden !important;
+  }
+}

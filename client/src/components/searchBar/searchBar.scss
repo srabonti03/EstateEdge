@@ -1,0 +1,216 @@
+@use "../../responsive.scss" as *;
+
+.searchBar {
+  margin-top: 4px;
+
+  @include lg {
+    padding: 0 32px;
+    margin-top: 16px;
+  }
+
+  @include md {
+    padding: 0 24px;
+    margin-top: 20px;
+  }
+
+  @include sm {
+    padding: 0 16px;
+    margin-top: 30px;
+  }
+
+  @include xs {
+    padding: 0 12px;
+    margin-top: 35px;
+  }
+
+  .type {
+    display: flex;
+    gap: 0px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    button {
+      padding: 14px 28px;
+      border: 1px solid #444;
+      border-bottom: none;
+      cursor: pointer;
+      background-color: #2a291e;
+      color: #e6e3d2;
+      text-transform: capitalize;
+      font-size: 14px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
+
+      &.active {
+        background-color: #fece51;
+        color: #171717;
+        font-weight: 600;
+      }
+
+      &:first-child {
+        border-top-left-radius: 5px;
+        border-right: none;
+      }
+
+      &:last-child {
+        border-top-right-radius: 5px;
+        border-left: none;
+      }
+
+      &:hover {
+        background-color: #3b3624;
+        color: #fff9e6;
+      }
+
+      @include md {
+        padding: 12px 24px;
+        font-size: 13px;
+      }
+
+      @include sm {
+        padding: 10px 18px;
+        font-size: 12px;
+      }
+
+      @include xs {
+        padding: 8px 14px;
+        font-size: 11px;
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: nowrap;
+    border: 1px solid #444;
+    background-color: rgba(64, 62, 40, 0.9);
+    padding: 10px 12px;
+    border-radius: 4px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include md {
+      gap: 10px;
+      padding: 10px 16px;
+    }
+
+    @include sm {
+      gap: 8px;
+      padding: 8px 12px;
+    }
+
+    @include xs {
+      gap: 6px;
+      padding: 6px 10px;
+    }
+
+    input {
+      border: none;
+      background-color: transparent;
+      color: #f1e9c9;
+      font-size: 16px;
+      padding: 12px 16px;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+      min-width: 80px;
+      max-width: 100%;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+
+      &::placeholder {
+        color: #c1b27d;
+      }
+
+      &:focus {
+        outline: none;
+        border-bottom: 2px solid #fece51;
+      }
+
+      @include md {
+        font-size: 15px;
+        padding: 10px 14px;
+      }
+
+      @include sm {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+
+      @include xs {
+        font-size: 11px;
+        padding: 6px 10px;
+      }
+    }
+
+    button {
+      border: none;
+      background-color: #ddb848;
+      color: #fff;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #cba53c;
+        transform: scale(1.01);
+      }
+
+      @include md {
+        width: 50px;
+        height: 50px;
+      }
+
+      @include sm {
+        width: 40px;
+        height: 40px;
+        color: #cba53c;
+        background-color: transparent;
+
+        &:hover {
+          color: #ad8d36;
+          background-color: transparent;
+          transform: none;
+        }
+      }
+
+      @include xs {
+        width: 36px;
+        height: 36px;
+      }
+
+      img {
+        width: 22px;
+        height: 22px;
+        transition: width 0.3s ease, height 0.3s ease;
+
+        @include md {
+          width: 20px;
+          height: 20px;
+        }
+
+        @include sm {
+          width: 18px;
+          height: 18px;
+        }
+
+        @include xs {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}

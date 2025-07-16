@@ -1,0 +1,49 @@
+@use "../../responsive.scss" as *;
+
+.admin-dashboard {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 86vh;
+  width: 100vw;
+  overflow: hidden;
+
+  @include md {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  @include sm {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+}
+
+.admin-dashboard::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('dashboard.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(2px);
+  z-index: -1;
+}
+
+.sideBar {
+  z-index: 1;
+  position: relative;
+}
+
+.main-content {
+  z-index: 1;
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+}

@@ -1,0 +1,217 @@
+@use "../../responsive.scss" as *;
+
+.CareerList {
+  height: 86vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  color: #e0e0e0;
+  background: linear-gradient(
+    135deg,
+    #171717,
+    #3a3320,
+    #675d32,
+    #66533d,
+    #62572e,
+    #2b271a
+  );
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .career-hero {
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    .career-hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(2px);
+      transition: filter 0.3s ease;
+
+      &:hover {
+        filter: blur(5px);
+      }
+    }
+
+    .career-hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #dddddd;
+      text-align: center;
+      max-width: 600px;
+
+      h2 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-bottom: 2px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.85);
+        color: #ffffff;
+      }
+
+      p {
+        font-size: 1.15rem;
+        color: rgba(182, 182, 182, 0.9);
+        font-weight: 300;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+        line-height: 1;
+      }
+    }
+  }
+
+  .career-section {
+    flex-grow: 1;
+    width: 95vw;
+    margin: 10px auto 0;
+    padding: 20px;
+    background: rgba(91, 91, 61, 0.5);
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+
+    .career-heading {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #cfcfcf;
+      margin-bottom: 25px;
+      text-align: center;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .career-cards {
+      display: flex;
+      gap: 18px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 8px;
+
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .career-card {
+      background: rgba(20, 20, 20, 0.92);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      width: 260px;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      flex-shrink: 0;
+
+      &:hover {
+        box-shadow: 0 8px 22px rgba(255, 255, 255, 0.06);
+      }
+
+      .job-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #bfbfbf;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .job-description {
+        font-size: 0.95rem;
+        line-height: 1;
+        margin-bottom: 2px;
+        color: #a6a5a5;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin-bottom: 6px;
+        color: #cccccc;
+      }
+
+      strong {
+        color: #e0e0e0;
+        font-weight: 600;
+        margin-right: 4px;
+      }
+
+      .muted {
+        color: #a5a5a5;
+        font-weight: 400;
+        opacity: 0.75;
+      }
+
+      .apply-btn {
+        margin-top: 10px;
+        padding: 10px 0;
+        font-weight: 700;
+        font-size: 0.95rem;
+        border: none;
+        border-radius: 5px;
+        background-color: #5c4d1f;
+        color: #dddddd;
+        box-shadow: 0 5px 12px rgba(59, 54, 37, 0.7);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          background-color: #4b4632;
+          box-shadow: 0 6px 15px rgba(75, 70, 50, 0.8);
+        }
+      }
+    }
+
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(43, 39, 26, 0.85);
+      border: none;
+      color: #a89b88;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(168, 155, 136, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, color 0.3s ease,
+        transform 0.2s ease;
+      z-index: 10;
+
+      &:hover {
+        background-color: #3b331f;
+        color: #b2a595;
+      }
+
+      &.left {
+        left: -5px;
+      }
+
+      &.right {
+        right: -5px;
+      }
+    }
+  }
+}
