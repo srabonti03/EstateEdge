@@ -8,11 +8,15 @@
 
 ## 👥 Team Members
 
+<div align="center">
+
 | Name                    | ID               | Role                                    |
-| ----------------------- | ---------------- | --------------------------------------- |
+|-------------------------|------------------|-----------------------------------------|
 | Srabonti Suchi Talukdar | 0562220005101037 | Frontend & Backend Developer, Team Lead |
 | Allo Rani Malakar       | 0562220005101013 | UI/UX Designer, SCSS & Styling          |
 | Rashada Chowdhury       | 0562220005101055 | Backend Support, Testing & Debugging    |
+
+</div>
 
 ---
 
