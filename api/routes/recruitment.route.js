@@ -3,7 +3,6 @@ import {
   getRecruitments,
   recruitmentPost,
   updateRecruitmentPost,
-  deleteRecruitmentPost,
   disableRecruitmentPost,
   enableRecruitmentPost,
   getRecruitmentPostById,
@@ -33,9 +32,6 @@ router.patch("/:id/disable", verifyToken, disableRecruitmentPost);
 
 // Protected: Enable a previously disabled recruitment post
 router.patch("/:id/enable", verifyToken, enableRecruitmentPost);
-
-// Protected: Delete recruitment post by ID (Only Admin)
-router.delete("/:id", verifyToken, deleteRecruitmentPost);
 
 // Apply to a specific recruitment post using ID from URL
 router.post("/:id/apply", verifyToken, applyForRecruitment);

@@ -274,37 +274,6 @@ export const updateRecruitmentPost = async (req, res) => {
   }
 };
 
-// Delete recruitment post by ID (admin only)
-export const deleteRecruitmentPost = async (req, res) => {
-  const userId = req.userId;
-  const recruitmentId = req.params.id;
-
-  try {
-    const user = await prisma.user.findUnique({ where: { id: userId } });
-    if (!user || user.role !== "admin") {
-      return res.status(403).json({ message: "Only admins can delete recruitment posts." });
-    }
-
-    const existingPost = await prisma.recruitment.findUnique({ where: { id: recruitmentId } });
-    if (!existingPost) {
-      return res.status(404).json({ message: "Recruitment post not found." });
-    }
-
-    await prisma.application.deleteMany({
-      where: { recruitmentId }
-    });
-
-    await prisma.recruitment.delete({
-      where: { id: recruitmentId }
-    });
-
-    res.status(200).json({ message: "Recruitment post and all applications deleted. Accepted users remain upgraded." });
-  } catch (err) {
-    console.error("Error deleting recruitment post:", err);
-    res.status(500).json({ message: "Something went wrong while deleting recruitment post." });
-  }
-};
-
 // Disable recruitment post (admin only)
 export const disableRecruitmentPost = async (req, res) => {
   const userId = req.userId;

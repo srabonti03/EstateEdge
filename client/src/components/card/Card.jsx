@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./card.scss";
 import { AuthContext } from "../../context/AuthContext";
 
-function Card({ item, onDelete }) {
+function Card({ item }) {
   const [saved, setSaved] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();

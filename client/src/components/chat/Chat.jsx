@@ -14,65 +14,64 @@ function Chat({ chatId }) {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    const fetchChats = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/chat/", {
-          credentials: "include",
-        });
-        const data = await res.json();
-        setChats(data);
-      } catch (err) {
-        console.error("Failed to fetch chats:", err);
-      }
-    };
-
-    if (currentUser?.id) fetchChats();
-  }, [currentUser?.id]);
-
-  useEffect(() => {
-    const fetchUnreadChats = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/chat/unread", {
-          method: "GET",
-          credentials: "include",
-        });
-        const data = await res.json();
-        const ids = data.map((chat) => chat.id);
-        setUnreadChatIds(ids);
-      } catch (err) {
-        console.error("Failed to fetch unread chats:", err);
-      }
-    };
-
-    if (currentUser?.id) fetchUnreadChats();
-  }, [currentUser?.id]);
-
-  useEffect(() => {
-    if (chatId && chats.length > 0 && !selectedChat) {
-      openChat(chatId);
+  const fetchChats = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/chat/", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setChats(data);
+    } catch (err) {
+      console.error("Failed to fetch chats:", err);
     }
-  }, [chatId, chats, selectedChat]);
+  };
+
+  const fetchUnreadChats = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/chat/unread", {
+        method: "GET",
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error("Failed to fetch unread chats");
+      const data = await res.json();
+      const ids = data.map((chat) => chat.id);
+      setUnreadChatIds(ids);
+    } catch (err) {
+      console.error("Failed to fetch unread chats:", err);
+    }
+  };
 
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    if (currentUser?.id) {
+      fetchChats();
+      fetchUnreadChats();
     }
-  }, [selectedChat?.messages]);
+  }, [currentUser?.id]);
 
   const openChat = async (id) => {
     try {
-      await fetch(`http://localhost:3000/api/chat/read/${id}`, {
+      const unreadResBefore = await fetch(
+        "http://localhost:3000/api/chat/unread",
+        {
+          credentials: "include",
+        }
+      );
+      if (!unreadResBefore.ok)
+        throw new Error("Failed to fetch unread chats before opening");
+      const unreadBefore = await unreadResBefore.json();
+      setUnreadChatIds(unreadBefore.map((chat) => chat.id));
+
+      const resRead = await fetch(`http://localhost:3000/api/chat/read/${id}`, {
         method: "PUT",
         credentials: "include",
       });
+      if (!resRead.ok) throw new Error("Failed to mark chat as read");
 
-      const res = await fetch(`http://localhost:3000/api/chat/${id}`, {
+      const resChat = await fetch(`http://localhost:3000/api/chat/${id}`, {
         credentials: "include",
       });
-
-      if (!res.ok) throw new Error("Failed to fetch chat data");
-      const data = await res.json();
+      if (!resChat.ok) throw new Error("Failed to fetch chat data");
+      const data = await resChat.json();
 
       const chatData = {
         id: data.chat.id,
@@ -87,19 +86,41 @@ function Chat({ chatId }) {
       setChats((prev) =>
         prev.map((chat) =>
           chat.id === id
-            ? {
-                ...chat,
-                seenBy: [...(chat.seenBy || []), currentUser?.id],
-              }
+            ? { ...chat, lastMessage: data.chat.lastMessage }
             : chat
         )
       );
 
-      setUnreadChatIds((prev) => prev.filter((cid) => cid !== id));
+      const unreadResAfter = await fetch(
+        "http://localhost:3000/api/chat/unread",
+        {
+          credentials: "include",
+        }
+      );
+      if (!unreadResAfter.ok)
+        throw new Error("Failed to fetch unread chats after opening");
+      const unreadAfter = await unreadResAfter.json();
+      setUnreadChatIds(unreadAfter.map((chat) => chat.id));
     } catch (error) {
       console.error("Error opening chat:", error);
     }
   };
+
+  useEffect(() => {
+    if (
+      chatId &&
+      chats.length > 0 &&
+      (!selectedChat || selectedChat.id !== chatId)
+    ) {
+      openChat(chatId);
+    }
+  }, [chatId, chats]);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+    }
+  }, [selectedChat?.messages]);
 
   const handleSend = async () => {
     if (!newMessage.trim() || !selectedChat) return;
@@ -110,9 +131,7 @@ function Chat({ chatId }) {
         {
           method: "POST",
           credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: newMessage }),
         }
       );
@@ -133,16 +152,14 @@ function Chat({ chatId }) {
       setChats((prevChats) =>
         prevChats.map((chat) =>
           chat.id === selectedChat.id
-            ? {
-                ...chat,
-                lastMessage: data.text,
-                seenBy: [...(chat.seenBy || []), currentUser?.id],
-              }
+            ? { ...chat, lastMessage: data.text }
             : chat
         )
       );
 
       setNewMessage("");
+
+      await fetchUnreadChats();
     } catch (error) {
       console.error("Sending message failed:", error);
     }
@@ -165,6 +182,7 @@ function Chat({ chatId }) {
             <IoIosArrowForward className="arrow" />
           </Link>
         </h1>
+
         {chats.map((chat) => {
           const participant = chat.participants.find(
             (p) => p.id !== currentUser?.id
@@ -182,19 +200,38 @@ function Chat({ chatId }) {
               onClick={() => openChat(chat.id)}
               style={{ cursor: "pointer" }}
             >
-              <Link to={`/agent/${participant.id}`} className="avatar-link">
-                <img src={avatar} alt={participant?.username} />
-              </Link>
-              <div className="messageContent">
-                <Link
-                  to={`/agent/${participant.id}`}
-                  className="username-link"
-                  style={{ textDecoration: "none", color: "inherit" }}
-                >
-                  <span>{participant?.username}</span>
-                </Link>
-                <p className={isUnread ? "unread" : ""}>{chat.lastMessage}</p>
-              </div>
+              {currentUser?.role === "user" ? (
+                <>
+                  <Link to={`/agent/${participant.id}`} className="avatar-link">
+                    <img src={avatar} alt={participant?.username} />
+                  </Link>
+                  <div className="messageContent">
+                    <Link
+                      to={`/agent/${participant.id}`}
+                      className="username-link"
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <span>{participant?.username}</span>
+                    </Link>
+                    <p className={isUnread ? "unread" : ""}>{chat.lastMessage}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="avatar-link">
+                    <img src={avatar} alt={participant?.username} />
+                  </div>
+                  <div className="messageContent">
+                    <span
+                      className="username-link"
+                      style={{ color: "inherit" }}
+                    >
+                      {participant?.username}
+                    </span>
+                    <p className={isUnread ? "unread" : ""}>{chat.lastMessage}</p>
+                  </div>
+                </>
+              )}
             </div>
           );
         })}
@@ -254,6 +291,12 @@ function Chat({ chatId }) {
               placeholder="Type your message..."
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSend();
+                }
+              }}
             ></textarea>
             <button onClick={handleSend}>Send</button>
           </div>

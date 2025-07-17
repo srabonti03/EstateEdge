@@ -8,7 +8,9 @@ export const addMessage = async (req, res) => {
     const { text } = req.body;
 
     if (!userId) {
-      return res.status(401).json({ message: "Unauthorized. User ID missing." });
+      return res
+        .status(401)
+        .json({ message: "Unauthorized. User ID missing." });
     }
 
     if (!chatId || !text) {
@@ -24,7 +26,9 @@ export const addMessage = async (req, res) => {
     }
 
     if (!chat.userIDs.includes(userId)) {
-      return res.status(403).json({ message: "Access denied. You are not part of this chat." });
+      return res
+        .status(403)
+        .json({ message: "Access denied. You are not part of this chat." });
     }
 
     const newMessage = await prisma.message.create({
@@ -39,9 +43,7 @@ export const addMessage = async (req, res) => {
       where: { id: chatId },
       data: {
         lastMessage: text,
-        seenBy: {
-          push: userId,
-        },
+        seenBy: [userId],
       },
     });
 

@@ -17,12 +17,15 @@ import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SinglePage() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -37,11 +40,42 @@ function SinglePage() {
     fetchPost();
   }, [id]);
 
-  const processedImages = post?.images?.length
-    ? post.images.slice(0, 4).map((img) =>
-        img.startsWith("http") ? img : `http://localhost:3000${img}`
-      )
-    : Array(4).fill("/fallback-property.png");
+  useEffect(() => {
+    if (currentUser?.role === "user") {
+      fetch("http://localhost:3000/api/post/savedposts", {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const isSaved = data.some(
+            (savedPost) => String(savedPost.postId) === String(id)
+          );
+          setSaved(isSaved);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch saved posts:", err);
+        });
+    }
+  }, [id, currentUser]);
+
+  const handleSave = () => {
+    fetch(`http://localhost:3000/api/post/savedposts/${id}`, {
+      method: "POST",
+      credentials: "include",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((data) => {
+            throw new Error(data.message || "Failed to save post");
+          });
+        }
+        setSaved(true);
+        toast.success("Saved to your favorites.", { position: "top-center" });
+      })
+      .catch((err) => {
+        toast.error(`${err.message}`, { position: "top-center" });
+      });
+  };
 
   const handleSendMessage = async () => {
     try {
@@ -69,6 +103,12 @@ function SinglePage() {
       console.error("Failed to create or fetch chat:", err);
     }
   };
+
+  const processedImages = post?.images?.length
+    ? post.images.slice(0, 4).map((img) =>
+        img.startsWith("http") ? img : `http://localhost:3000${img}`
+      )
+    : Array(4).fill("/fallback-property.png");
 
   return (
     <div className="singlePage">
@@ -192,14 +232,19 @@ function SinglePage() {
                 <FaComment size={16} color="#20b2aa" />
                 Send a Message
               </button>
-              <button>
-                <FaRegSave size={16} color="#3cb371" />
-                Save the Place
-              </button>
+
+              {!saved && (
+                <button onClick={handleSave}>
+                  <FaRegSave size={16} color="#3cb371" />
+                  Save the Place
+                </button>
+              )}
             </div>
           )}
         </div>
       </div>
+
+      <ToastContainer position="top-center" style={{ position: "absolute" }} />
     </div>
   );
 }

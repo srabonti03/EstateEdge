@@ -7,7 +7,6 @@ import {
   FiEye,
   FiToggleLeft,
   FiToggleRight,
-  FiTrash,
 } from "react-icons/fi";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -170,81 +169,6 @@ function ManageRecruitments() {
     }
   };
 
-  const handleDelete = (id) => {
-    toast(
-      <div style={{ fontSize: "1rem", color: "#333" }}>
-        <p>
-          Are you sure you want to <strong>delete</strong> this recruitment?
-        </p>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            gap: "12px",
-            marginTop: "10px",
-          }}
-        >
-          <button
-            onClick={() => {
-              handleDeleteConfirmed(id);
-              toast.dismiss();
-            }}
-            style={{
-              padding: "6px 14px",
-              fontSize: "0.9rem",
-              borderRadius: "4px",
-              border: "none",
-              cursor: "pointer",
-              fontWeight: "600",
-              backgroundColor: "#f44336",
-              color: "#fff",
-            }}
-          >
-            Yes
-          </button>
-          <button
-            onClick={() => toast.dismiss()}
-            style={{
-              padding: "6px 14px",
-              fontSize: "0.9rem",
-              borderRadius: "4px",
-              border: "none",
-              cursor: "pointer",
-              fontWeight: "600",
-              backgroundColor: "#4caf50",
-              color: "#fff",
-            }}
-          >
-            No
-          </button>
-        </div>
-      </div>,
-      {
-        autoClose: false,
-        closeOnClick: false,
-        closeButton: false,
-        draggable: false,
-      }
-    );
-  };
-
-  const handleDeleteConfirmed = async (id) => {
-    try {
-      const res = await fetch(`http://localhost:3000/api/recruitment/${id}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.message || "Failed to delete");
-      }
-      setJobs((prev) => prev.filter((job) => job.id !== id));
-      toast.success("Recruitment deleted successfully");
-    } catch (err) {
-      toast.error(`Error: ${err.message}`);
-    }
-  };
-
   return (
     <div className="manage-recruitments">
       <h1 className="heading">
@@ -325,13 +249,6 @@ function ManageRecruitments() {
                       title="Edit"
                     >
                       <FiEdit />
-                    </button>
-                    <button
-                      className="delete-btn"
-                      onClick={() => handleDelete(item.id)}
-                      title="Delete"
-                    >
-                      <FiTrash />
                     </button>
                     <button
                       className={item.isDisabled ? "enable-btn" : "disable-btn"}
