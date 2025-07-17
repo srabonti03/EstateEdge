@@ -176,6 +176,7 @@ You can expose it to your network using --host or press h + Enter to show help i
 
 ## Project Folder Structure
 
+```bash
 EstateEdge/
 ├── api/                        # Backend API server
 │   ├── controllers/            # Route handlers for API endpoints
@@ -203,6 +204,7 @@ EstateEdge/
 ├── .gitignore                  # Git ignore rules for Node.js and others
 ├── LICENSE                     # Apache License 2.0 file
 └── README.md                   # Project documentation and instructions
+```
 
 ---
 
